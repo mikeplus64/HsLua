@@ -1,5 +1,5 @@
 name: hslua
-version: 0.4.6
+version: 0.4.7
 stability: beta
 cabal-version: >= 1.6
 license: BSD3
@@ -8,24 +8,60 @@ license-file: COPYRIGHT
 copyright: 2007-2010, Gracjan Polak
 author: Gracjan Polak <gracjanpolak@gmail.com>, Mike Ledger <eleventynine@gmail.com>
 maintainer: Gracjan Polak <gracjanpolak@gmail.com>
-synopsis: A Lua language interpreter embedding in Haskell
-description:
-        The Scripting.Lua module is a wrapper of Lua language interpreter
-        as described in www.lua.org.
+synopsis: Bindings to the Lua C API.
+description: Haskell bindings for Lua.
 category: Scripting
 
+flag system-lua
+    description: Use the system Lua, instead of the one that comes with HsLua.
+    default: False
+
 library
-  build-depends: base==4.*, bytestring, text
-  exposed-modules: Lua, Lua.ConfigFile
-  hs-source-dirs: src
-  extra-libraries: lua
+    build-depends: base==4.*, bytestring, text
+    exposed-modules: Scripting.Lua, Scripting.Lua.ConfigFile
+    hs-source-dirs: src
 
-  if os(linux)
-    cc-options: "-DLUA_USE_LINUX"
+    if flag(system-lua)
+        extra-libraries: lua
+    else
+        c-sources: 
+              lapi.c
+            , lauxlib.c
+            , lbaselib.c
+            , lcode.c
+            , ldblib.c
+            , ldebug.c
+            , ldo.c
+            , ldump.c
+            , lfunc.c
+            , lgc.c
+            , linit.c
+            , liolib.c
+            , llex.c
+            , lmathlib.c
+            , lmem.c
+            , loadlib.c
+            , lobject.c
+            , lopcodes.c
+            , loslib.c
+            , lparser.c
+            , lstate.c
+            , lstring.c
+            , lstrlib.c
+            , ltable.c
+            , ltablib.c
+            , ltm.c
+            , lundump.c
+            , lvm.c
+            , lzio.c
+            , ntrljmp.c
 
-  if os(darwin)
-    cc-options: "-DLUA_USE_MACOSX"
+    if os(linux)
+        cc-options: "-DLUA_USE_LINUX"
 
-  if os(freebsd)
-    cc-options: "-DLUA_USE_POSIX"
+    if os(darwin)
+        cc-options: "-DLUA_USE_MACOSX"
+
+    if os(freebsd)
+        cc-options: "-DLUA_USE_POSIX"
 
