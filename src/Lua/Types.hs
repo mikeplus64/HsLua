@@ -2,7 +2,6 @@ module Lua.Types where
 import Foreign.C.Types
 import Foreign
 
-
 -- | Wrapper for @lua_State *@. See @lua_State@ in Lua Reference Manual.
 newtype LuaState = LuaState (Ptr ())
 
@@ -73,19 +72,3 @@ data GCCONTROL  = GCSTOP
                 | GCSETSTEPMUL
                 deriving (Eq,Ord,Show,Enum)
 
--- | A value that can be pushed and poped from the Lua stack.
--- All instances are natural, except following:
---
---  * @LuaState@ push ignores its argument, pushes current state
---
---  * @()@ push ignores its argument, just pushes nil
---
---  * @Ptr ()@ pushes light user data, peek checks for lightuserdata or userdata
-class StackValue a where
-    -- | Pushes a value onto Lua stack, casting it into meaningfully nearest Lua type.
-    push      :: LuaState -> a -> IO ()
-    -- | Check if at index @n@ there is a convertible Lua value and if so return it
-    -- wrapped in @Just@. Return @Nothing@ otherwise.
-    peek      :: LuaState -> Int -> IO (Maybe a)
-    -- | Lua type id code of the vaule expected. Parameter is unused.
-    valuetype :: a -> LTYPE
