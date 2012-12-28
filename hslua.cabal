@@ -1,5 +1,5 @@
 name: hslua
-version: 0.5.0
+version: 0.5.1
 stability: beta
 cabal-version: >= 1.6
 license: BSD3
@@ -18,7 +18,7 @@ flag system-lua
 
 library
     build-depends: base==4.*, bytestring, text
-    exposed-modules: Lua, Lua.ConfigFile
+    exposed-modules: Lua, Lua.Types, Lua.ConfigFile
     hs-source-dirs: src
 
     if flag(system-lua)
