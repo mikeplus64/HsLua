@@ -1,5 +1,5 @@
 name: hslua
-version: 0.5.1
+version: 0.5.2
 stability: beta
 cabal-version: >= 1.6
 license: BSD3
