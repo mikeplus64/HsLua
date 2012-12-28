@@ -1,7 +1,7 @@
 {-# LANGUAGE ForeignFunctionInterface, TypeSynonymInstances, FlexibleInstances, OverloadedStrings #-}
 {-# OPTIONS_GHC -Wall -fno-warn-name-shadowing -fno-warn-unused-do-bind -fno-warn-unused-binds #-}
 -- |
--- Module      : Scripting.Lua
+-- Module      : Lua
 -- Copyright   : (c) Gracjan Polak 2007
 --               (c) Mike Ledger   2012
 --
@@ -50,7 +50,7 @@
 -- >     Lua.callproc l "print" "Hello from Lua"
 -- >     Lua.close l
 
-module Scripting.Lua
+module Lua
 (
     -- * Basic Lua types
     LuaState(..),

@@ -24,6 +24,7 @@ library
     if flag(system-lua)
         extra-libraries: lua
     else
+        include-dirs: lua
         c-sources: 
               lapi.c
             , lauxlib.c

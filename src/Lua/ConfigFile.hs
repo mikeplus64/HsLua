@@ -1,7 +1,7 @@
 {-# LANGUAGE DeriveDataTypeable, OverloadedStrings #-} 
 
 -- |
--- Module      : Scripting.Lua.ConfigFile
+-- Module      : Lua.ConfigFile
 -- Copyright   : (c) Benjamin Geer 2011
 --
 -- License     : BSD3-style
@@ -12,7 +12,7 @@
 --
 -- Reads configuration files written in Lua.  See @http:\/\/www.lua.org\/@
 -- for more details.
-module Scripting.Lua.ConfigFile
+module Lua.ConfigFile
        (
          Config,
          openConfig,
@@ -29,7 +29,7 @@ module Scripting.Lua.ConfigFile
          ConfigFileException
        ) where
 
-import qualified Scripting.Lua as Lua
+import qualified Lua
 import System.IO (FilePath)
 import Control.Exception (Exception, throwIO)
 import Control.Monad (forM, forM_)
