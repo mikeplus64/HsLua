@@ -18,7 +18,7 @@ flag system-lua
 
 library
     build-depends: base==4.*, bytestring, text
-    exposed-modules: Scripting.Lua, Scripting.Lua.ConfigFile
+    exposed-modules: Lua, Lua.ConfigFile
     hs-source-dirs: src
 
     if flag(system-lua)
